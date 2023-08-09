@@ -1,0 +1,17 @@
+name: 'bigcommerce-bq'
+version: '0.1.0'
+config-version: 2
+require-dbt-version: [">=1.3.0", "<2.0.0"]
+models:
+  bigcommerce:
+    +schema: bigcommerce
+    +materialized: table
+    intermediate:
+      +materialized: ephemeral
+      int_bc__customer_email_rollup:
+        +materialized: view # so we can use the dbt_utils.star macro
+
+vars:
+  bigcommerce:
+    bc_customer: "{{ ref('stg_bc__customer') }}"
+    bc_order: "{{ ref('stg_bc__order') }}"

@@ -1,0 +1,9 @@
+name: 'bigcommerce_bq_tests'
+version: '0.1.0'
+profile: 'integration_tests'
+config-version: 2
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+  - "dbt_modules"
